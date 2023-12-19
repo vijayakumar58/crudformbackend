@@ -20,8 +20,8 @@ app.listen(process.env.PORT || 3000, () => {
 app.use(express.json());
 app.use(cors({
     // origin:"http://localhost:3001",
-    // origin:"https://vijaycrudformfrontend.netlify.app"
-    origin : "*"
+    origin:"https://vijaycrudformfrontend.netlify.app"
+    // origin : "*"
 }))
 
 //welcome api
@@ -49,7 +49,8 @@ const Authenticate = (req,res,next) => {
 //multer middleware 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '../crudformfrontend/src/images/');
+        const absolutePath = path.resolve(__dirname, '../crudformfrontend/src/images/');
+        cb(null, absolutePath);
       },
     filename : function (req,file,cb){
         const uniqueSuffix = Date.now();
