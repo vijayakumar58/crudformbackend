@@ -18,7 +18,6 @@ app.listen(process.env.PORT || 3000, () => {
 
 //middleware 
 app.use(express.json());
-app.use("/files",express.static('files'));
 app.use('/images', express.static(path.resolve(__dirname, './uploads')));
 app.use(cors({
     // origin:"http://localhost:3001",
