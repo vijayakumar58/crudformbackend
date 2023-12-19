@@ -48,10 +48,7 @@ const Authenticate = (req,res,next) => {
 
 //multer middleware 
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        const absolutePath = path.resolve(__dirname, '../crudformfrontend/src/images/');
-        cb(null, absolutePath);
-      },
+    destination: '../crudformfrontend/src/images/',
     filename : function (req,file,cb){
         const uniqueSuffix = Date.now();
       cb(null, uniqueSuffix + file.originalname);
