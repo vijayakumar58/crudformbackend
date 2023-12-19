@@ -154,7 +154,7 @@ app.post('/login',async (req,res) => {
         if (userAccount) {
             const compare = await bcrypt.compare(req.body.password, userAccount.password);
             if (compare) {
-                const token = jwt.sign({_id: userAccount._id},process.env.SECRET,{expiresIn:"5min"})
+                const token = jwt.sign({_id: userAccount._id},process.env.SECRET,{expiresIn:"20min"})
                 res.json(token);
             } else {
                 res.json({message:'Enter the Correct Password'})
