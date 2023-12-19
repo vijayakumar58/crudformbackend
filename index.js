@@ -21,8 +21,8 @@ app.use(express.json());
 app.use('/images', express.static(path.resolve(__dirname, './uploads')));
 app.use(cors({
     // origin:"http://localhost:3001",
-    origin:"https://vijaycrudformfrontend.netlify.app"
-    // origin : "*"
+    // origin:"https://vijaycrudformfrontend.netlify.app"
+    origin : "*"
 }))
 
 //welcome api
@@ -59,7 +59,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 
 // post user datas
-app.post('/createUser',Authenticate,upload.single('image'),async(req,res) => {
+app.post('/createUser',upload.single('image'),async(req,res) => {
     const imageName = req.file.filename;
     try {
         const connection = await mongoClient.connect(URL);
