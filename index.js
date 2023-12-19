@@ -18,7 +18,8 @@ app.listen(process.env.PORT || 3000, () => {
 
 //middleware 
 app.use(express.json());
-app.use("/files",express.static('files'))
+app.use("/files",express.static('files'));
+app.use('/images', express.static(path.resolve(__dirname, './uploads')));
 app.use(cors({
     // origin:"http://localhost:3001",
     origin:"https://vijaycrudformfrontend.netlify.app"
@@ -49,9 +50,7 @@ const Authenticate = (req,res,next) => {
 
 //multer middleware 
 const storage = multer.diskStorage({
-    destination: function (req,file,cb) {
-        cb(null,'./files')
-    },
+    destination: path.resolve(__dirname, './uploads'),
     filename : function (req,file,cb){
         const uniqueSuffix = Date.now();
       cb(null, uniqueSuffix + file.originalname);
